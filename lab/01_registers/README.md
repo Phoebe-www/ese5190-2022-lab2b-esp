@@ -1,14 +1,14 @@
 ## code:
 
-#include <stdio.h>
-#include <stdlib.h>
+    #include <stdio.h>
+    #include <stdlib.h>
 
-#include "pico/stdlib.h"
-#include "hardware/pio.h"
-#include "hardware/clocks.h"
-#include "ws2812.pio.h"
+    #include "pico/stdlib.h"
+    #include "hardware/pio.h"
+    #include "hardware/clocks.h"
+    #include "ws2812.pio.h"
 
-int main() {
+    int main() {
 
     const uint BOOT_PIN = 21;
     gpio_init(BOOT_PIN);
