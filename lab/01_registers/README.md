@@ -37,3 +37,4 @@
 
 ## GIF
 
+![a](https://github.com/Phoebe-www/ese5190-2022-lab2b-esp/blob/main/lab/01_registers/5bad60687980af0dcf15dbc47a577a6d.gif)
