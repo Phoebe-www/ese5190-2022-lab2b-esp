@@ -15,7 +15,7 @@ Create a REPL to let you read and write RP2040 registers from a console. You sho
   #include "registers.h"
   #include "ws2812.pio.h"
 
-    int main() {
+   int main() {
 
     uint32_t addr_input = 0x00000000;
     ADDRESS addr = 0x00000000;
