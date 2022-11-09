@@ -88,6 +88,6 @@ Create a 'sequencer' that allows you to record BOOT button presses and play them
         j = 0;
     }
     return 0;
-   }
+    }
 
 
