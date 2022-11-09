@@ -6,14 +6,14 @@ Create a REPL to let you read and write RP2040 registers from a console. You sho
 - read/write using any of the atomic bit-setting aliases and a 32-bit mask
 
 ## code
-  #include "pico/stdlib.h"
-  #include <stdio.h>
-  #include "ws2812.h"
-  #include "hardware/pio.h"
-  #include "hardware/clocks.h"
-  #include "ws2812.pio.h"
-  #include "registers.h"
-  #include "ws2812.pio.h"
+    #include "pico/stdlib.h"
+    #include <stdio.h>
+    #include "ws2812.h"
+    #include "hardware/pio.h"
+    #include "hardware/clocks.h"
+    #include "ws2812.pio.h"
+    #include "registers.h"
+    #include "ws2812.pio.h"
 
     int main() {
 
@@ -55,3 +55,8 @@ Create a REPL to let you read and write RP2040 registers from a console. You sho
 
     return 0;
     }
+    
+    
+    ## result
+    ![image](https://user-images.githubusercontent.com/113930091/200722185-93a54f30-9f1d-40a9-83f3-60e74ab801a9.png)
+
