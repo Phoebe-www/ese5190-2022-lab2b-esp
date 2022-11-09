@@ -57,6 +57,6 @@ Create a REPL to let you read and write RP2040 registers from a console. You sho
     }
     
     
-    ## result
-    ![image](https://user-images.githubusercontent.com/113930091/200722185-93a54f30-9f1d-40a9-83f3-60e74ab801a9.png)
+## result
+![image](https://user-images.githubusercontent.com/113930091/200722185-93a54f30-9f1d-40a9-83f3-60e74ab801a9.png)
 
