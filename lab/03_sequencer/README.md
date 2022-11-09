@@ -14,31 +14,29 @@ Create a 'sequencer' that allows you to record BOOT button presses and play them
     
 ## code
 
-  #include "pico/stdlib.h"
-  #include <stdio.h>
-  #include "neopixel.h"
-  #include "hardware/gpio.h"
-  #include "ws2812.pio.h"
-  #include "hardware/pio.h"
-  #define PIO         pio0
-  #define SM          0
-  #define FREQ        800000
-  #define PIN         12
-  #define POWER_PIN   11
-  #define IS_RGBW     true  
+    #include "pico/stdlib.h"
+    #include <stdio.h>
+    #include "neopixel.h"
+    #include "hardware/gpio.h"
+    #include "ws2812.pio.h"
+    #include "hardware/pio.h"
+    #define PIO         pio0
+    #define SM          0
+    #define FREQ        800000
+    #define PIN         12
+    #define POWER_PIN   11
+    #define IS_RGBW     true  
 
-  #define QTPY_BOOT_PIN 21
+    #define QTPY_BOOT_PIN 21
 
- typedef struct {
+    typedef struct {
     uint32_t last_serial_byte;
     uint32_t button_is_pressed;
     uint32_t light_color;
- } Flashlight; 
-
-void render_to_console(Flashlight status) {
+    } Flashlight; 
 
 
-int main() {
+    int main() {
 
     stdio_init_all();
     gpio_init(QTPY_BOOT_PIN);
@@ -90,6 +88,6 @@ int main() {
         j = 0;
     }
     return 0;
- }
+  }
 
 
