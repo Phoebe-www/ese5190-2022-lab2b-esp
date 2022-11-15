@@ -5,7 +5,8 @@
 - record a trace of this exchange
 
 ## code
-...
+```
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -134,4 +135,9 @@ while(1){
         }
     }
 }
-...
+```
+
+## result
+![d552a35611961ee5da7e0dbad193c98](https://user-images.githubusercontent.com/113930091/202039226-0f5d3971-a894-4ed7-a870-53409ee1c379.png)
+
+
