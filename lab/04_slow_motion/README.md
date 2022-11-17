@@ -7,94 +7,95 @@ Update your sequencer to be able to slow down and speed up recordings/replay. On
 
 
 ## code
-    #include "pico/stdlib.h"
-    #include <stdio.h>
-    #include "neopixel.h"
-    #include "hardware/gpio.h"
-    #include "ws2812.pio.h"
-    #include "hardware/pio.h"
-    #define PIO         pio0
-    #define SM          0
-    #define FREQ        800000
-    #define PIN         12
-    #define POWER_PIN   11
-    #define IS_RGBW     true  
+```
+#include <stdio.h>
+#include <stdlib.h>
+#include "pico/stdlib.h"
+#include "ws2812.h"
 
-    #define QTPY_BOOT_PIN 21
+#include "pico/stdlib.h"
+#include "hardware/pio.h"
+#include "hardware/clocks.h"
+#include "ws2812.pio.h"
 
-    typedef struct {
-      uint32_t last_serial_byte;
-      uint32_t button_is_pressed;
-      uint32_t light_color;
-    } Flashlight; 
-    
-    int main() {
+#define IS_RGBW true
 
+#define WS2812_PIN 12
+#define WS2812_POWER_PIN 11
+#define PIO pio0
+#define SM 0
+#define FREQ 800000
+
+#define record 'r'
+#define replay 'p'
+#define BOOT_PIN 21
+
+
+int main() {
     stdio_init_all();
-    gpio_init(QTPY_BOOT_PIN);
-    gpio_set_dir(QTPY_BOOT_PIN, GPIO_IN);
-    neopixel_init();
+    uint offset = pio_add_program(PIO, &ws2812_program);
+    //rp_init();
+    ws2812_program_init(PIO, SM, offset, WS2812_PIN, FREQ, IS_RGBW);
+    turn_on_pixel();
 
-    Flashlight status;
-    status.last_serial_byte =  0x00000000;
-    status.button_is_pressed = 0x00000000;
-    status.light_color =       0x00ff0000;
+    gpio_init(BOOT_PIN);
+    gpio_set_dir(BOOT_PIN, GPIO_IN);
 
-    int max = 10*1000;
-    int i = 0;
-    int j = 0;
-    int speed=1;
-    uint32_t arr[10*100];
-    char input;
-    scanf("%c",&input);
-    printf("Start to press button.\n");
-    while (i < max/10) {
-        if (gpio_get(QTPY_BOOT_PIN)) { // poll every cycle, 0 = "pressed"
-            status.button_is_pressed = 0x00000000;
-            arr[i] = 0x00000000;
-        } else {
-            status.button_is_pressed = 0x00000001;
-            arr[i] = 0x00000001;
-        }
-        if (status.button_is_pressed) { // poll every cycle
-            neopixel_set_rgb(status.light_color);
-        } else {
-            neopixel_set_rgb(0x00000000);
-        }
-        render_to_console(status);
-        sleep_ms(10); // don't DDOS the serial console
-        i += 1;
-      }
+    uint32_t key = 0x00000000;
+    uint32_t flag = 0x00000000;
+
     while(true){
-        printf("Enter 1 to replay in normal speed. Enter 2 to slow down replay. Enter 3 to speed up replay.\n");
-        scanf("%d",&speed);
-        if(speed == 3){
-            printf("Start Replay fast!\n");
-            speed = 5;
-        }else if(speed == 1){
-            printf("Start Replay in normal speed!\n");
-            speed = 10;
-        }else{
-            printf("Start Replay slow!\n");
-            speed = 20;
-        }
-        while(j < max/10){
-            if(arr[j]){
-                neopixel_set_rgb(status.light_color);
-            }else{
-                neopixel_set_rgb(0x00000000);
-            }
-            render_to_console(status);
-            sleep_ms(speed); // don't DDOS the serial console
-            j += 1;
+        key = getchar_timeout_us(0);
+        switch(key){
+            case 'r':
+                set_pixel_color(0X00FF0000);
+                sleep_ms(1000);
+                while(true){
+                    flag = 0x00000000;
+                    flag = getchar_timeout_us(0);
+                    if(!gpio_get(BOOT_PIN)) {
+                        printf("1\n");
+                        set_pixel_color(0X0000FF00);
+                    } 
+                    else {
+                        printf("0\n");
+                        set_pixel_color(0x00000000);
+                    }
+                    if(flag == 'N'){
+                        set_pixel_color(0X00000000);
+                        sleep_ms(10);
+                        break;
+                    }
+                    sleep_ms(10); 
+                }
+                break;
+            
+            case 'p':
+                while(true){
+                    flag = 0x00000000;
+                    flag = getchar_timeout_us(0);
+                    if(flag == '1'){
+                        set_pixel_color(0X000000FF);
+                    }
+                    if(flag == '0'){
+                        set_pixel_color(0x00000000);
+                    }
+                    if(flag == 'N'){
+                        set_pixel_color(0x00000000);
+                        sleep_ms(10);
+                        break;
+                    }
+                    sleep_ms(10);
+                }
+                break;
+
           }
-         j = 0;
       }
-      return 0;
-     }
-     
+  }  
+  ```
+   
      
 ## result
 
-(https://www.youtube.com/watch?v=0IleZYBUjzE)
+(https://youtu.be/h6rITi-CL-Y)
 
