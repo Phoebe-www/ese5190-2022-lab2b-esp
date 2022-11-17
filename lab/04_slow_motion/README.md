@@ -93,8 +93,7 @@ int main() {
       }
   }  
   ```
-The python code is in another file.   
-     
+The python code is in another file. We use it which is run on the CPU for asking user to either start recording or reply, and it also in charge of speed.
 ## result
 
 (https://youtu.be/h6rITi-CL-Y)
