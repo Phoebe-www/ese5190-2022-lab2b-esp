@@ -71,3 +71,14 @@ int main(){
 
 }
 ```
+## result
+
+![c85ab9e8b83de5f16df25679a2531e2](https://user-images.githubusercontent.com/113930091/202834234-b86b2640-9a4d-4d81-b5f0-c5fe0ec54b06.jpg)
+
+ 
+![89c0ff47a3af98f9b49b3bef710d192](https://user-images.githubusercontent.com/113930091/202834245-f27e0074-0515-42c3-b353-e6470d29780b.jpg)
+
+![e4495201d7ccb29b1ac742217b31c2b](https://user-images.githubusercontent.com/113930091/202834252-d91bea65-b98a-4fc0-bcd7-6c0a72d7c17c.jpg)
+
+![2aa40d21753ce0464ea5ff5b7537379](https://user-images.githubusercontent.com/113930091/202834258-609ee994-b939-4a8f-9ded-b8397d45f726.jpg)
+
